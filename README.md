@@ -226,7 +226,7 @@ TÄMÄ OLISI VAIHTOEHTOINEN POLKU. TÄTÄ EN OLE ITSE TESTANNUT
 This option deploys both backend and frontend as Docker containers on Render.com.
 
 1. **Create Dockerfiles**
-   - Create a `Dockerfile` in both `backend` and `frontend` directories.
+   - Create a `Dockerfile` in both `backend` and `frontend` directories if you haven't done these in Task 4.
 
 2. **Build and Test Locally**
    - Build and test docker files locally
