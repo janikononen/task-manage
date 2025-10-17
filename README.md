@@ -30,7 +30,6 @@ A full-stack task management application built for learning DevOps practices inc
 
 ## Architecture
 
-```mermaid
 flowchart LR
    subgraph Frontend["Frontend (React + Vite)"]
       FE["React App"]
@@ -44,6 +43,18 @@ flowchart LR
    subgraph Data["Data & Persistence"]
       DB[(PostgreSQL)]
    end
+
+   FE -->|API calls (Axios / HTTP)| BE
+   BE -->|HTTP responses| FE
+
+   FE -->|Authorization: Bearer token| BE
+   BE -->|issues JWT (on auth)| FE
+
+   BE -->|Read / Write (SQL)| DB
+   DB -->|Query results| BE
+
+   BE -->|issue/verify| Auth
+   Auth -->|token used by| BE
  ```
 
 # Project Tasks
