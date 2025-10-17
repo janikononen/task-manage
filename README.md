@@ -32,27 +32,17 @@ A full-stack task management application built for learning DevOps practices inc
 
 ```mermaid
 flowchart LR
-   subgraph Client["Client"]
-      U["User\n(Browser / Mobile)"]
+   subgraph Frontend["Frontend (React + Vite)"]
+      FE["React App"]
    end
 
-   subgraph Frontend["Frontend\n(React + Vite)"]
-      FE["React App\n(Axios, Routing)"]
-   end
-
-   subgraph Backend["Backend\n(Node.js + Express + TypeScript)"]
+   subgraph Backend["Backend (Node.js + Express)"]
       BE["API Server"]
       Auth[(JWT)]
    end
 
    subgraph Data["Data & Persistence"]
       DB[(PostgreSQL)]
-   end
-
-   subgraph CI_CD["CI / CD & Registry"]
-      GH[GitHub Actions]
-      Registry[(Container Registry)]
-      Render[Render.com]
    end
  ```
 
