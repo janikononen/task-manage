@@ -28,6 +28,49 @@ A full-stack task management application built for learning DevOps practices inc
 - React Router
 - Axios
 
+## Architecture
+
+```mermaid
+flowchart LR
+   subgraph Client["Client"]
+      U[User<br/>(Browser / Mobile)]
+   end
+
+   subgraph Frontend["Frontend<br/>(React + Vite)"]
+      FE[React App<br/>(Axios, Routing)]
+   end
+
+   subgraph Backend["Backend<br/>(Node.js + Express + TypeScript)"]
+      BE[API Server]
+      Auth[(JWT)]
+   end
+
+   subgraph Data["Data & Persistence"]
+      DB[(PostgreSQL)]
+   end
+
+   subgraph Dev["Local Dev"]
+      LocalDB[Postgres (Docker)]
+   end
+
+   subgraph CI_CD["CI / CD & Registry"]
+      GH[GitHub Actions]
+      Registry[(Container Registry)]
+      Render[Render.com]
+   end
+
+   U -->|HTTP(S)| FE
+   FE -->|REST / JSON| BE
+   BE -->|ORM (Sequelize)| DB
+   BE -->|JWT| Auth
+   BE -->|dev connection| LocalDB
+
+   GH -->|run: lint, test, build| BE & FE
+   GH -->|build images / push| Registry
+   Registry -->|deploy images| Render
+   GH -->|deploy on tag/release| Render
+```
+
 # Project Tasks
 
 ### Prerequisites
