@@ -10,7 +10,7 @@ on:
       - "**/*.txt"
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     strategy:
@@ -124,3 +124,13 @@ jobs:
 
       - name: Audit dependencies
         run: npm audit --audit-level=moderate
+
+  publish:
+    needs: test
+    runs-on: ubuntu-latest
+    if: ${{ needs.test.result == 'success' }}
+    steps:
+      - name: Call webhooks
+        run: |
+          curl -X POST -H "Content-Type: application/json" -d '{"status":"success"}' https://api.render.com/deploy/srv-d4m3iobuibrs738bdslg?key=k84gRtduS_Y
+          curl -X POST -H "Content-Type: application/json" -d '{"status":"success"}' https://api.render.com/deploy/srv-d4m4l33uibrs738c0pjg?key=RtKa4D1Wr4w
