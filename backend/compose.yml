@@ -1,12 +1,15 @@
 services:
   backend:
     build: .
+    environment:
+      DATABASE_HOST: taskmanagement
+      DATABASE_PORT: 5432
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: posgres
     ports:
       - "5000:5000"
     env_file:
       - .env
-    volumes:
-      - .:/app
     depends_on:
       - db
   db:
